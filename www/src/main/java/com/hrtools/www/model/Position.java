@@ -3,6 +3,11 @@ package com.hrtools.www.model;
 import java.util.Date;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+import org.hibernate.annotations.CreationTimestamp;
+
+>>>>>>> master
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,12 +49,20 @@ public class Position {
 	@Column(nullable = false)
 	private Double salaryRange;
 	@Column(nullable = false)
+<<<<<<< HEAD
 	private String Qualifications;
+=======
+	private String qualifications;
+>>>>>>> master
 	@Column(nullable = false)
 	private String status;
 	@Column(nullable = false)
 	private String employmentType;
+<<<<<<< HEAD
 	@Column(nullable = false)
+=======
+	@CreationTimestamp
+>>>>>>> master
 	private Date dateOfCreation;
 
 }
