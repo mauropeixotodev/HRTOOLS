@@ -2,6 +2,9 @@ package com.hrtools.www.model;
 
 import java.util.Date;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,9 +37,9 @@ public class AttendanceRecord {
 	@Column(nullable = false)
 	private Date dayDate;
 
-	@Column(nullable = false)
+	@CreationTimestamp
 	private Date clockIn;
-
+	@UpdateTimestamp
 	private Date clockOut;
 	@Column(nullable = false)
 	private String Status;
