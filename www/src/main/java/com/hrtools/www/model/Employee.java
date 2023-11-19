@@ -19,11 +19,8 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Employee_seq")
 	@SequenceGenerator(name = "Employee_seq", sequenceName = "Employee_seq", allocationSize = 1)
 	@EqualsAndHashCode.Include
-<<<<<<< HEAD
-	private long id;
-=======
 	private Long id;
->>>>>>> master
+
 	@Column(nullable = false)
 	private String fullname;
 	@Column(nullable = false)

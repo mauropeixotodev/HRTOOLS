@@ -20,11 +20,9 @@ public class Notification {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Notification_seq")
 	@SequenceGenerator(name = "Notification_seq", sequenceName = "Notification_seq", allocationSize = 1)
 	@EqualsAndHashCode.Include
-<<<<<<< HEAD
-	private long id;
-=======
+
 	private Long id;
->>>>>>> master
+
 	@Column(nullable = false)
 	private String status;
 	@Column(nullable = false)

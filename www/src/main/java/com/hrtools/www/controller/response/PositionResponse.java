@@ -1,10 +1,6 @@
 package com.hrtools.www.controller.response;
 
 import java.util.List;
-
-import com.hrtools.www.model.Department;
-import com.hrtools.www.model.Employee;
-
 import lombok.Builder;
 import lombok.Data;
 

@@ -2,12 +2,9 @@ package com.hrtools.www.model;
 
 import java.util.Date;
 
-<<<<<<< HEAD
-=======
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
->>>>>>> master
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,15 +37,10 @@ public class AttendanceRecord {
 	@Column(nullable = false)
 	private Date dayDate;
 
-<<<<<<< HEAD
-	@Column(nullable = false)
-	private Date clockIn;
 
-=======
 	@CreationTimestamp
 	private Date clockIn;
 	@UpdateTimestamp
->>>>>>> master
 	private Date clockOut;
 	@Column(nullable = false)
 	private String Status;
