@@ -38,7 +38,7 @@ public class PositionETL {
                     .id(position.getId())
                     .title(position.getTitle())
                     .description(position.getDescription())
-                    .department(DepartmentETL.convertDepartmentToDepartmentResponse(position.getDepartment(), false)) // Convert Department to DepartmentResponse
+                    .department(position.getDepartment().getName()) // Convert Department to DepartmentResponse
                     .salaryRange(position.getSalaryRange())
                     .qualifications(position.getQualifications())
                     .status(position.getStatus())
@@ -47,8 +47,16 @@ public class PositionETL {
 
             if (cascade) {
                 if (position.getReportsTo() != null) {
-                    // Convert each Employee in reportsTo to EmployeeResponse and add to the list
-                    positionResponse.setReportsTo(new ArrayList<>());
+                    
+                    positionResponse.setReportsTo(position.getReportsTo().stream().map(e -> {
+						try {
+							return EmployeeETL.convertEmployeeToEmployeeResponse(e, false);
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						return null;
+					}).toList());
                 }else {
                 	positionResponse.setReportsTo(new ArrayList<>());
                 }

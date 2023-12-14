@@ -18,7 +18,7 @@ import com.hrtools.www.controller.request.CompanyRequest;
 import com.hrtools.www.controller.response.CompanyResponse;
 import com.hrtools.www.service.CompanyService;
 
-import jakarta.persistence.EntityNotFoundException;
+import javax.persistence.EntityNotFoundException;
 
 @RestController
 public class CompanyController {

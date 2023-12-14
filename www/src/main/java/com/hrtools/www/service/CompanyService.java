@@ -12,7 +12,7 @@ import com.hrtools.www.etl.CompanyETL;
 import com.hrtools.www.model.Company;
 import com.hrtools.www.repository.CompanyRepository;
 
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 
 @Service
 public class CompanyService {

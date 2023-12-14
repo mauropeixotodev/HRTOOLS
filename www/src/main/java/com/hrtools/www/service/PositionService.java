@@ -9,11 +9,10 @@ import com.hrtools.www.controller.request.PositionRequest;
 import com.hrtools.www.controller.response.PositionResponse;
 import com.hrtools.www.etl.PositionETL;
 import com.hrtools.www.model.Position;
-import com.hrtools.www.model.Company;
 import com.hrtools.www.model.Department;
 import com.hrtools.www.repository.DepartmentRepository;
 import com.hrtools.www.repository.PositionRepository;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 
 @Service
 public class PositionService {

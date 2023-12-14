@@ -13,7 +13,7 @@ import com.hrtools.www.controller.request.PositionRequest;
 import com.hrtools.www.controller.response.PositionResponse;
 import com.hrtools.www.service.PositionService;
 
-import jakarta.persistence.EntityNotFoundException;
+import javax.persistence.EntityNotFoundException;
 
 @RestController
 public class PositionController {

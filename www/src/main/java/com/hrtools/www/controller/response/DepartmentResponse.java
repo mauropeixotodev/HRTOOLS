@@ -17,9 +17,9 @@ public class DepartmentResponse {
 
 	private String description;
 
-	private CompanyResponse company;
+	private String company;
 
-	private EmployeeResponse owner;
+	private String owner;
 
 	private List<EmployeeResponse> employees;
 

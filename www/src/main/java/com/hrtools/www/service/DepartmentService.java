@@ -11,7 +11,7 @@ import com.hrtools.www.model.Company;
 import com.hrtools.www.model.Department;
 import com.hrtools.www.repository.CompanyRepository;
 import com.hrtools.www.repository.DepartmentRepository;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 
 @Service
 public class DepartmentService {

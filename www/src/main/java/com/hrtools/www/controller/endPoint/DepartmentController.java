@@ -13,7 +13,7 @@ import com.hrtools.www.controller.request.DepartmentRequest;
 import com.hrtools.www.controller.response.DepartmentResponse;
 import com.hrtools.www.service.DepartmentService;
 
-import jakarta.persistence.EntityNotFoundException;
+import javax.persistence.EntityNotFoundException;
 
 @RestController
 public class DepartmentController {

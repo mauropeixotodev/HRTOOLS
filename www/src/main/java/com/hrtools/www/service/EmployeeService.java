@@ -17,7 +17,7 @@ import com.hrtools.www.repository.DepartmentRepository;
 import com.hrtools.www.repository.EmployeeRepository;
 import com.hrtools.www.repository.PositionRepository;
 
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 
 @Service
 public class EmployeeService {

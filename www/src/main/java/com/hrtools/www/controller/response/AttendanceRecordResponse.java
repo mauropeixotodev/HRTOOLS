@@ -19,8 +19,8 @@ public class AttendanceRecordResponse {
 
 	private Date clockOut;
 
-	private String Status;
+	private int status;
 
-	private EmployeeResponse employee;
+	private String employee;
 
 }

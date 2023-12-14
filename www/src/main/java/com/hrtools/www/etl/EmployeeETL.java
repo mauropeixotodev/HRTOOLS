@@ -1,5 +1,7 @@
 package com.hrtools.www.etl;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import com.hrtools.www.controller.request.EmployeeRequest;
 import com.hrtools.www.controller.response.EmployeeResponse;
 import com.hrtools.www.model.Employee;
@@ -17,7 +19,8 @@ public class EmployeeETL {
             if (employeeRequest.getEmailAddress() != null)
                 employee.setEmailAddress(employeeRequest.getEmailAddress());
             if (employeeRequest.getPassword() != null)
-                employee.setPassword(employeeRequest.getPassword());
+            	System.out.println("AQUIIIIIIIIII "+new BCryptPasswordEncoder().encode(employeeRequest.getPassword()));
+                employee.setPassword(new BCryptPasswordEncoder().encode(employeeRequest.getPassword()));
             if (company != null)
                 employee.setCompany(company);
             if (manager != null)
@@ -34,10 +37,19 @@ public class EmployeeETL {
                 employee.setPhoneNumeber(employeeRequest.getPhoneNumeber());
             if (employeeRequest.getEmployeeType() != null)
                 employee.setEmployeeType(employeeRequest.getEmployeeType());
-            if (employeeRequest.getActivityStatus() != null)
-                employee.setActivityStatus(employeeRequest.getActivityStatus());
+            if (employeeRequest.isActivityStatus())
+                employee.setActivityStatus(employeeRequest.isActivityStatus());
             if (employeeRequest.getRoles() != null)
-                employee.setRoles(employeeRequest.getRoles());
+             //   employee.setRoles(employeeRequest.getRoles());
+            if (employeeRequest.getUsername() != null)
+            	System.out.println("AQUIIIIIIIIIIIIII      "+employeeRequest.getUsername());
+                employee.setUsername(employeeRequest.getUsername());
+                
+                
+                
+                
+                System.out.println(employee.getUsername());
+                
             return employee;
         } catch (Exception e) {
             throw new Exception("Method: convertEmployeeRequestToEmployee | Reason: " + e.getMessage(), e);
@@ -51,19 +63,21 @@ public class EmployeeETL {
                     .fullname(employee.getFullname())
                     .emailAddress(employee.getEmailAddress())
                     .password(employee.getPassword()) // Note: Generally, it's not recommended to include passwords in responses
-                    .company(CompanyETL.convertCompanyToCompanyResponse(employee.getCompany(), false, null)) // Convert Company to CompanyResponse
-                    .position(PositionETL.convertPositionToPositionResponse(employee.getPosition(), false)) // Convert Position to PositionResponse
-                    .department(DepartmentETL.convertDepartmentToDepartmentResponse(employee.getDepartment(), false)) // Convert Department to DepartmentResponse
                     .dateOfJoining(employee.getDateOfJoining())
                     .dateOfTermination(employee.getDateOfTermination())
                     .phoneNumeber(employee.getPhoneNumeber())
                     .employeeType(employee.getEmployeeType())
-                    .activityStatus(employee.getActivityStatus())
-                    .roles(employee.getRoles()).build();
+                    .activityStatus(employee.isActivityStatus())
+                    .username(employee.getUsername())
+                    .build();
+            
+            if(employee.getCompany()!= null) employeeResponse.setCompany(employee.getCompany().getName());
+            if(employee.getDepartment()!= null) employeeResponse.setDepartment(employee.getDepartment().getName());
+            if(employee.getPosition() != null) employeeResponse.setPosition(employee.getPosition().getTitle());
 
             if (cascade) {
                 if (employee.getManager() != null) {
-                	employeeResponse.setManager(convertEmployeeToEmployeeResponse(employee.getManager(), false));;
+                	employeeResponse.setManager(employee.getManager().getFullname());;
                 }
                 if (employee.getDirectReports() != null) {
                 	employeeResponse.setDirectReports(employee.getDirectReports().stream().map(e -> {

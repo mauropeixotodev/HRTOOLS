@@ -39,7 +39,7 @@ public class DepartmentETL {
 		try {
 			DepartmentResponse departmentResponse = DepartmentResponse.builder().id(department.getId())
 					.name(department.getName()).description(department.getDescription())
-					.company(CompanyETL.convertCompanyToCompanyResponse(department.getCompany(), false, null))
+					.company(department.getCompany().getName())
 					.owner(null).budget(department.getBudget()).email(department.getEmail())
 					.phoneNumber(department.getPhoneNumber()).dateOfestablishment(department.getDateOfestablishment())
 					.build();

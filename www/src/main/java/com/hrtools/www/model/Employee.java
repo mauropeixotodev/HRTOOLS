@@ -1,9 +1,17 @@
 package com.hrtools.www.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.persistence.*;
 import lombok.*;
 
 @Data
@@ -13,7 +21,7 @@ import lombok.*;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 @Entity
-public class Employee {
+public class Employee implements UserDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Employee_seq")
@@ -21,10 +29,12 @@ public class Employee {
 	@EqualsAndHashCode.Include
 	private Long id;
 
-	@Column(nullable = false)
+	
 	private String fullname;
-	@Column(nullable = false)
+
 	private String emailAddress;
+	@Column(nullable = false)
+	private String username;
 	@Column(nullable = false)
 	private String password;
 
@@ -44,19 +54,65 @@ public class Employee {
 	@ManyToOne
 	@JoinColumn(name = "department_id")
 	private Department department;
-	@Column(nullable = false)
+	
 	private Date dateOfJoining;
 
 	private Date dateOfTermination;
-	@Column(nullable = false)
+
 	private String phoneNumeber;
-	@Column(nullable = false)
+	
 	private String employeeType;
 	@Column(nullable = false)
-	private String activityStatus;
+	private boolean activityStatus;
 	@ManyToMany(mappedBy = "employees")
 	private List<Notification> notification;
 
-	private String roles;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "employee_roles", joinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+	private Collection<Role> roles;
+
+	
+	
+	
+	   @Override
+	    public Collection<? extends GrantedAuthority> getAuthorities() {
+	        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+	        for (Role role : this.roles) {
+	            authorities.add(new SimpleGrantedAuthority(role.getName()));
+	        }
+	        return authorities;
+	    }
+	    
+
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return this.username;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return this.activityStatus;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return this.activityStatus;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return this.activityStatus;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return this.activityStatus;
+	}
 
 }

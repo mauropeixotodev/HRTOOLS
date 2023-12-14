@@ -14,7 +14,7 @@ public class PositionResponse {
 
 	private String description;
 
-	private DepartmentResponse department;
+	private String department;
 
 	private List<EmployeeResponse> reportsTo;
 

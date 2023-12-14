@@ -5,6 +5,7 @@ import java.util.List;
 
 import lombok.Builder;
 import lombok.Data;
+
 @Data
 @Builder
 public class EmployeeResponse {
@@ -17,15 +18,17 @@ public class EmployeeResponse {
 
 	private String password;
 
-	private CompanyResponse company;
+	private String company;
 
-	private EmployeeResponse manager;
+	private String manager;
+	
+	private String username;
 
 	private List<EmployeeResponse> directReports;
 
-	private PositionResponse position;
+	private String position;
 
-	private DepartmentResponse department;
+	private String department;
 
 	private Date dateOfJoining;
 
@@ -35,7 +38,7 @@ public class EmployeeResponse {
 
 	private String employeeType;
 
-	private String activityStatus;
+	private boolean activityStatus;
 
 	private List<NotificationResponse> notification;
 
